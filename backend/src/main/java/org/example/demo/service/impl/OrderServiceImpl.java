@@ -30,7 +30,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void placeOrder(CreateOrderRequest request) {
-        // TODO Auto-generated method stub
         Order order = new Order();
         User user = userRepository.findByUsername(request.getUsername()).orElseThrow(() -> new NotFoundException("Not Found User With Username:" + request.getUsername()));
         order.setFirstname(request.getFirstname());

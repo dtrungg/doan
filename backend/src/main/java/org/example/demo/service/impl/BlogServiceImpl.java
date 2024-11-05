@@ -37,7 +37,6 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<Blog> getList() {
-        // TODO Auto-generated method stub
         return blogRepository.findAll(Sort.by("id").descending());
     }
 
@@ -49,7 +48,6 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog createBlog(CreateBlogRequest request) {
-        // TODO Auto-generated method stub
         Blog blog = new Blog();
         blog.setTitle(request.getTitle());
         blog.setDescription(request.getDescription());
@@ -71,7 +69,6 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog updateBlog(long id, CreateBlogRequest request) {
-        // TODO Auto-generated method stub
         Blog blog = blogRepository.findById(id).orElseThrow(() -> new NotFoundException("Not Found Blog"));
         blog.setTitle(request.getTitle());
         blog.setDescription(request.getDescription());
@@ -90,7 +87,6 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public void deleteBlog(long id) {
-        // TODO Auto-generated method stub
         Blog blog = blogRepository.findById(id).orElseThrow(() -> new NotFoundException("Not Found Blog"));
         blog.getTags().remove(this);
         blogRepository.delete(blog);
@@ -98,7 +94,6 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<Blog> getListNewest(int limit) {
-        // TODO Auto-generated method stub
         List<Blog> list = blogRepository.getListNewest(limit);
         return list;
     }

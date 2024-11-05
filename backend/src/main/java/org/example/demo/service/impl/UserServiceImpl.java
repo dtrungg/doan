@@ -31,7 +31,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void register(CreateUserRequest request) {
-        // TODO Auto-generated method stub
         User user = new User();
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
@@ -71,14 +70,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByUsername(String username) {
-        // TODO Auto-generated method stub
         User user = userRepository.findByUsername(username).orElseThrow(() -> new NotFoundException("Not Found User"));
         return user;
     }
 
     @Override
     public User updateUser(UpdateProfileRequest request) {
-        // TODO Auto-generated method stub
         User user = userRepository.findByUsername(request.getUsername()).orElseThrow(() -> new NotFoundException("Not Found User"));
         user.setFirstname(request.getFirstname());
         user.setLastname(request.getLastname());
@@ -93,7 +90,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void changePassword(ChangePasswordRequest request) {
-        // TODO Auto-generated method stub
         // User user = userRepository.findByUsername(request.getUsername()).orElseThrow(() -> new NotFoundException("Not Found User"));
 
         // if(encoder.encode(request.getOldPassword()) != user.getPassword()){

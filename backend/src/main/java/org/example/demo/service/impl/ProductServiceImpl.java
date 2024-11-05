@@ -31,13 +31,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getList() {
-        // TODO Auto-generated method stub
         return productRepository.findAll(Sort.by("id").descending());
     }
 
     @Override
     public Product getProduct(long id) {
-        // TODO Auto-generated method stub
         Product product= productRepository.findById(id).orElseThrow(() -> new NotFoundException("Not Found Product With Id: " + id));
 
         return product;
@@ -46,7 +44,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product createProduct(CreateProductRequest request) {
-        // TODO Auto-generated method stub
         Product product = new Product();
         product.setName(request.getName());
         product.setDescription(request.getDescription());
@@ -67,7 +64,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product updateProduct(long id, CreateProductRequest request) {
-        // TODO Auto-generated method stub
         Product product= productRepository.findById(id).orElseThrow(() -> new NotFoundException("Not Found Product With Id: " + id));
         product.setName(request.getName());
         product.setDescription(request.getDescription());
@@ -89,7 +85,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(long id) {
-        // TODO Auto-generated method stub
         Product product= productRepository.findById(id).orElseThrow(() -> new NotFoundException("Not Found Product With Id: " + id));
         product.getImages().remove(this);
         productRepository.delete(product);
@@ -97,14 +92,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getListNewst(int number) {
-        // TODO Auto-generated method stub
         List<Product> list = productRepository.getListNewest(number);
         return list;
     }
 
     @Override
     public List<Product> getListByPrice() {
-        // TODO Auto-generated method stub
         return productRepository.getListByPrice();
     }
 
@@ -129,7 +122,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> searchProduct(String keyword) {
-        // TODO Auto-generated method stub
         List<Product> list = productRepository.searchProduct(keyword);
         return list;
     }
