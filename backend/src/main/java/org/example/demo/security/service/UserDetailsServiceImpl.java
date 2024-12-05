@@ -19,7 +19,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // TODO Auto-generated method stub
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
 
@@ -31,8 +30,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         // }
 
         return UserDetailsImpl.build(user);
-
-
     }
 
 }

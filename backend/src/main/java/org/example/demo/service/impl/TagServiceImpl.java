@@ -33,8 +33,7 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public Tag updateTag(long id, CreateTagRequest request) {
-
-        Tag tag = tagRepository.findById(id).orElseThrow(()-> new NotFoundException("Not Foud Tag"));
+        Tag tag = tagRepository.findById(id).orElseThrow(() -> new NotFoundException("Not Foud Tag"));
         tag.setName(request.getName());
         tagRepository.save(tag);
         return tag;
@@ -42,16 +41,16 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public void deleleTag(long id) {
-        Tag tag = tagRepository.findById(id).orElseThrow(()-> new NotFoundException("Not Foud Tag"));
+        Tag tag = tagRepository.findById(id).orElseThrow(() -> new NotFoundException("Not Foud Tag"));
         tagRepository.delete(tag);
     }
 
     @Override
-    public void enableTag(long id){
+    public void enableTag(long id) {
         Tag tag = tagRepository.findById(id).orElseThrow(() -> new NotFoundException("Not Found Tag With Id: " + id));
-        if(tag.isEnable()){
+        if (tag.isEnable()) {
             tag.setEnable(false);
-        } else{
+        } else {
             tag.setEnable(true);
         }
         tagRepository.save(tag);

@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BlogRepository extends JpaRepository<Blog,Long> {
+public interface BlogRepository extends JpaRepository<Blog, Long> {
 
-    @Query(value = "Select * from Blog order by id desc limit :limit",nativeQuery = true)
+    @Query(value = "Select * from Blog order by id desc limit :limit", nativeQuery = true)
     List<Blog> getListNewest(int limit);
 
 }

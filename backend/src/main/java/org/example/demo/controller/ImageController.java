@@ -29,7 +29,6 @@ public class ImageController {
     @GetMapping("/")
     public ResponseEntity<?> getList(){
         List<Image> listImage = imageService.getListImage();
-
         return  ResponseEntity.ok(listImage);
     }
 
@@ -37,7 +36,6 @@ public class ImageController {
     @Operation(summary="Lấy ra danh sách hình ảnh của user bằng user_id")
     public ResponseEntity<?> getListByUser(@PathVariable long userId){
         List<Image> listImage = imageService.getListByUser(userId);
-
         return ResponseEntity.ok(listImage);
     }
 

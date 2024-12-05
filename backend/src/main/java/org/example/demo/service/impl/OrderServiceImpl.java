@@ -31,7 +31,8 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void placeOrder(CreateOrderRequest request) {
         Order order = new Order();
-        User user = userRepository.findByUsername(request.getUsername()).orElseThrow(() -> new NotFoundException("Not Found User With Username:" + request.getUsername()));
+        User user = userRepository.findByUsername(request.getUsername())
+                .orElseThrow(() -> new NotFoundException("Not Found User With Username:" + request.getUsername()));
         order.setFirstname(request.getFirstname());
         order.setLastname(request.getLastname());
         order.setCountry(request.getCountry());
@@ -44,12 +45,12 @@ public class OrderServiceImpl implements OrderService {
         order.setNote(request.getNote());
         orderRepository.save(order);
         long totalPrice = 0;
-        for(CreateOrderDetailRequest rq: request.getOrderDetails()){
+        for (CreateOrderDetailRequest rq : request.getOrderDetails()) {
             OrderDetail orderDetail = new OrderDetail();
             orderDetail.setName(rq.getName());
             orderDetail.setPrice(rq.getPrice());
             orderDetail.setQuantity(rq.getQuantity());
-            orderDetail.setSubTotal(rq.getPrice()* rq.getQuantity());
+            orderDetail.setSubTotal(rq.getPrice() * rq.getQuantity());
             orderDetail.setOrder(order);
             totalPrice += orderDetail.getSubTotal();
             orderDetailRepository.save(orderDetail);
@@ -67,8 +68,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getOrderByUser(String username) {
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new NotFoundException("Not Found User With Username:" + username));
-
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new NotFoundException("Not Found User With Username:" + username));
         List<Order> orders = orderRepository.getOrderByUser(user.getId());
         return orders;
     }

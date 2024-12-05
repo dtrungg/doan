@@ -24,7 +24,6 @@ public class ProductController {
     @Operation(summary="Lấy ra danh sách sản phẩm")
     public ResponseEntity<List<Product>> getList(){
         List<Product> list = productService.getList();
-
         return ResponseEntity.ok(list);
     }
 
@@ -67,7 +66,6 @@ public class ProductController {
     @Operation(summary="Lấy sản phẩm bằng id")
     public ResponseEntity<Product> getProduct(@PathVariable long id){
         Product product = productService.getProduct(id);
-
         return ResponseEntity.ok(product);
     }
 
@@ -82,7 +80,6 @@ public class ProductController {
     @Operation(summary="Tạo mới sản phẩm")
     public ResponseEntity<Product> createProduct(@RequestBody CreateProductRequest request){
         Product product = productService.createProduct(request);
-
         return ResponseEntity.ok(product);
     }
 
@@ -90,7 +87,6 @@ public class ProductController {
     @Operation(summary="Tìm sản phẩm bằng id và cập nhật sản phẩm đó")
     public ResponseEntity<Product> updateProduct(@PathVariable long id,@RequestBody CreateProductRequest request){
         Product product = productService.updateProduct(id, request);
-
         return ResponseEntity.ok(product);
     }
 
@@ -98,7 +94,6 @@ public class ProductController {
     @Operation(summary="Xóa sản phẩm bằng id")
     public ResponseEntity<?> deleteProduct(@PathVariable long id){
         productService.deleteProduct(id);
-
         return ResponseEntity.ok(new MessageResponse("Product is delete"));
     }
 

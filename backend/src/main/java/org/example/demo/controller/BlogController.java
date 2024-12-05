@@ -23,7 +23,6 @@ public class BlogController {
     @Operation(summary="Lấy tất cả danh sách blog")
     public ResponseEntity<List<Blog>> getList(){
         List<Blog> list = blogService.getList();
-
         return ResponseEntity.ok(list);
 
     }
@@ -31,7 +30,6 @@ public class BlogController {
     @GetMapping("/{id}")
     @Operation(summary="Lấy ra blog bằng ID")
     public ResponseEntity<Blog> getBlog(@PathVariable long id){
-
         Blog blog =blogService.getBlog(id);
         return ResponseEntity.ok(blog);
 
@@ -48,9 +46,7 @@ public class BlogController {
     @PostMapping("/create")
     @Operation(summary="Tạo mới blog")
     public ResponseEntity<Blog> create(@RequestBody CreateBlogRequest request){
-
         Blog blog = blogService.createBlog(request);
-
         return ResponseEntity.ok(blog);
 
     }
@@ -58,9 +54,7 @@ public class BlogController {
     @PutMapping("/update/{id}")
     @Operation(summary="Tìm blog bằng id và cập nhật blog đó")
     public ResponseEntity<Blog> update(@PathVariable long id, @RequestBody CreateBlogRequest request){
-
         Blog blog = blogService.updateBlog(id, request);
-
         return ResponseEntity.ok(blog);
 
     }

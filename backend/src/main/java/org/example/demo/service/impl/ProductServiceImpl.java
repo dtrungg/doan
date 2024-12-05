@@ -36,8 +36,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProduct(long id) {
-        Product product= productRepository.findById(id).orElseThrow(() -> new NotFoundException("Not Found Product With Id: " + id));
-
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Not Found Product With Id: " + id));
         return product;
     }
 
@@ -49,12 +49,14 @@ public class ProductServiceImpl implements ProductService {
         product.setDescription(request.getDescription());
         product.setPrice(request.getPrice());
         product.setQuantity(request.getQuantity());
-        Category category = categoryRepository.findById(request.getCategoryId()).orElseThrow(()-> new NotFoundException("Not Found Category With Id: " + request.getCategoryId()));
+        Category category = categoryRepository.findById(request.getCategoryId())
+                .orElseThrow(() -> new NotFoundException("Not Found Category With Id: " + request.getCategoryId()));
         product.setCategory(category);
 
         Set<Image> images = new HashSet<>();
-        for(long imageId: request.getImageIds()){
-            Image image = imageRepository.findById(imageId).orElseThrow(() -> new NotFoundException("Not Found Image With Id: " + imageId));
+        for (long imageId : request.getImageIds()) {
+            Image image = imageRepository.findById(imageId)
+                    .orElseThrow(() -> new NotFoundException("Not Found Image With Id: " + imageId));
             images.add(image);
         }
         product.setImages(images);
@@ -64,17 +66,20 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product updateProduct(long id, CreateProductRequest request) {
-        Product product= productRepository.findById(id).orElseThrow(() -> new NotFoundException("Not Found Product With Id: " + id));
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Not Found Product With Id: " + id));
         product.setName(request.getName());
         product.setDescription(request.getDescription());
         product.setPrice(request.getPrice());
         product.setQuantity(request.getQuantity());
-        Category category = categoryRepository.findById(request.getCategoryId()).orElseThrow(()-> new NotFoundException("Not Found Category With Id: " + request.getCategoryId()));
+        Category category = categoryRepository.findById(request.getCategoryId())
+                .orElseThrow(() -> new NotFoundException("Not Found Category With Id: " + request.getCategoryId()));
         product.setCategory(category);
 
         Set<Image> images = new HashSet<>();
-        for(long imageId: request.getImageIds()){
-            Image image = imageRepository.findById(imageId).orElseThrow(() -> new NotFoundException("Not Found Image With Id: " + imageId));
+        for (long imageId : request.getImageIds()) {
+            Image image = imageRepository.findById(imageId)
+                    .orElseThrow(() -> new NotFoundException("Not Found Image With Id: " + imageId));
             images.add(image);
         }
         product.setImages(images);
@@ -85,7 +90,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(long id) {
-        Product product= productRepository.findById(id).orElseThrow(() -> new NotFoundException("Not Found Product With Id: " + id));
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Not Found Product With Id: " + id));
         product.getImages().remove(this);
         productRepository.delete(product);
     }
@@ -102,21 +108,21 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findRelatedProduct(long id){
+    public List<Product> findRelatedProduct(long id) {
         List<Product> list = productRepository.findRelatedProduct(id);
         return list;
 
     }
 
     @Override
-    public List<Product> getListProductByCategory(long id){
-        List<Product> list =productRepository.getListProductByCategory(id);
+    public List<Product> getListProductByCategory(long id) {
+        List<Product> list = productRepository.getListProductByCategory(id);
         return list;
     }
 
     @Override
-    public List<Product> getListByPriceRange(long id,int min, int max){
-        List<Product> list =productRepository.getListProductByPriceRange(id, min, max);
+    public List<Product> getListByPriceRange(long id, int min, int max) {
+        List<Product> list = productRepository.getListProductByPriceRange(id, min, max);
         return list;
     }
 
@@ -125,7 +131,6 @@ public class ProductServiceImpl implements ProductService {
         List<Product> list = productRepository.searchProduct(keyword);
         return list;
     }
-
 
 
 }

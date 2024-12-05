@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin(origins = "*",maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class UserController {
 
     @Autowired
@@ -18,17 +18,16 @@ public class UserController {
 
 
     @GetMapping("/")
-    @Operation(summary="Lấy ra user bằng username")
-    public ResponseEntity<User> getuser(@RequestParam("username") String username){
+    @Operation(summary = "Lấy ra user bằng username")
+    public ResponseEntity<User> getuser(@RequestParam("username") String username) {
         User user = userService.getUserByUsername(username);
         return ResponseEntity.ok(user);
     }
 
     @PutMapping("/update")
-    @Operation(summary="Cập nhật user")
-    public ResponseEntity<User> updateProfile(@RequestBody UpdateProfileRequest request){
+    @Operation(summary = "Cập nhật user")
+    public ResponseEntity<User> updateProfile(@RequestBody UpdateProfileRequest request) {
         User user = userService.updateUser(request);
-
         return ResponseEntity.ok(user);
     }
 

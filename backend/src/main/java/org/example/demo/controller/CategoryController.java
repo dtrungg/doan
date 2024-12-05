@@ -39,7 +39,6 @@ public class CategoryController {
     @Operation(summary="Tạo mới danh mục")
     public ResponseEntity<?> createCategory(@Valid @RequestBody CreateCategoryRequest request){
         Category category = categoryService.createCategory(request);
-
         return ResponseEntity.ok(category);
     }
 

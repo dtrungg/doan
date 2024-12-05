@@ -16,6 +16,6 @@ public class CreateTagRequest {
 
     @NotNull(message = "Tên nhãn rỗng")
     @NotEmpty(message = "Tên nhãn rỗng")
-    @Schema(description = "Tên nhãn",example="Beauty",required=true)
+    @Schema(description = "Tên nhãn", example = "Beauty", required = true)
     private String name;
 }

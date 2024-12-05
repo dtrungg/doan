@@ -34,7 +34,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category updateCategory(long id, CreateCategoryRequest request) {
-        Category category = categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Not Found Category With Id: " + id));
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Not Found Category With Id: " + id));
         category.setName(request.getName());
         categoryRepository.save(category);
         return category;
@@ -42,10 +43,11 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void enableCategory(long id) {
-        Category category = categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Not Found Category With Id: " + id));
-        if(category.isEnable()){
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Not Found Category With Id: " + id));
+        if (category.isEnable()) {
             category.setEnable(false);
-        } else{
+        } else {
             category.setEnable(true);
         }
         categoryRepository.save(category);
@@ -53,7 +55,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void deleteCategory(long id) {
-        Category category = categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("Not Found Category With Id: " + id));
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Not Found Category With Id: " + id));
         categoryRepository.delete(category);
     }
 

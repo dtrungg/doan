@@ -23,7 +23,6 @@ public class OrderController {
     @Operation(summary="Lấy ra danh sách đặt hàng")
     public ResponseEntity<List<Order>> getList(){
         List<Order> list = orderService.getList();
-
         return ResponseEntity.ok(list);
     }
 
@@ -31,16 +30,13 @@ public class OrderController {
     @Operation(summary="Lấy ra danh sách đặt hàng của người dùng bằng username")
     public ResponseEntity<List<Order>> getListByUser(@RequestParam("username") String username){
         List<Order> list = orderService.getOrderByUser(username);
-
         return ResponseEntity.ok(list);
     }
 
     @PostMapping("/create")
     @Operation(summary="Đặt hàng sản phẩm")
     public ResponseEntity<?> placeOrder(@RequestBody CreateOrderRequest request){
-
         orderService.placeOrder(request);
-
         return ResponseEntity.ok(new MessageResponse("Order Placed Successfully!"));
     }
 }
